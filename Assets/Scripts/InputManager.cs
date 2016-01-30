@@ -42,6 +42,8 @@ public class InputManager : MonoBehaviour {
             int.TryParse(btnPressed.GetKeyName(), out pressedCode);
             spell = (spell * 10) + pressedCode;
 
+            Debug.Log("New spell: " + spell);
+
             if (spellModified != null)
                 spellModified();
             CheckSpellCompleted();
@@ -50,9 +52,10 @@ public class InputManager : MonoBehaviour {
 
     private void CheckSpellCompleted()
     {
+        //Debug.Log(spell + " > " + Mathf.Pow(10, amountRitualSteps - 1));
         if (spell > (Mathf.Pow(10,amountRitualSteps - 1)) )
         {
-            if (spellModified != null)
+            if (spellCompleted != null)
                 spellCompleted();
             spell = 0;
         }
@@ -73,12 +76,6 @@ class InputHandler
     public string GetKeyName()
     {
         return key;
-    }
-
-    public InputHandler(string keyName, bool positive)
-    {
-        key = keyName;
-        sign = positive ? 1 : -1;
     }
 
     public bool isPressedOnce()
