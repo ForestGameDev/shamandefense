@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 
 public class VillageManager : MonoBehaviour {
@@ -13,10 +14,18 @@ public class VillageManager : MonoBehaviour {
         SICKNESS
     }
 
+
     [SerializeField] int requiredSpell;
     [SerializeField] float catastropheProbability = 10;
     [SerializeField] float catastropherCountDown = 10f;
     [SerializeField] Catastrophes currentCatastrophe;
+
+
+    [Header("Spell Input")]
+    [SerializeField] GameObject inputParent;
+    [SerializeField] Text[] inputs;
+
+
     [Header("Debug")]
     [SerializeField]
     float catastropheCounter = 0;
@@ -36,12 +45,33 @@ public class VillageManager : MonoBehaviour {
         currentState = NormalState;
         catastropheCounter = 0;
         currentCatastrophe = Catastrophes.NONE;
+        InputManager.spellCompleted += OnSpellCheck;
+        inputParent.SetActive(false);
     }
-
     void OnDisable()
     {
-
+        InputManager.spellCompleted -= OnSpellCheck;
     }
+
+    string InputToString(int input)
+    {
+        switch (input)
+        {
+            case 1:
+                return "A";
+            case 2:
+                return "S";
+            case 3:
+                return "D";
+            case 4:
+                return "F";
+
+        }
+        return null;
+    }
+
+
+
 
 
 	
@@ -64,8 +94,16 @@ public class VillageManager : MonoBehaviour {
             catastropheCounter = 0;
             currentState = CatastropheState;
             currentCatastrophe = Random.value > .5f ? Catastrophes.DROUGHT: Catastrophes.SICKNESS;
-            
-            switch(currentCatastrophe)
+
+            requiredSpell = RequiredSpellManager.GetSpell(3, requiredSpell);
+            inputParent.SetActive(true);
+
+
+            inputs[0].text = InputToString(requiredSpell / 100);
+            inputs[1].text = InputToString((requiredSpell%100) / 10);
+            inputs[2].text = InputToString(requiredSpell % 10);
+
+            switch (currentCatastrophe)
             {
                 case Catastrophes.DROUGHT:
                     break;
@@ -113,12 +151,18 @@ public class VillageManager : MonoBehaviour {
 
     void OnSpellCheck()
     {
-        //TODO implentar la comparacion si es correcto cambiar a normal
 
-        if (Villager.EventOnSick != null)
+        if(InputManager.spell ==requiredSpell)
         {
-            Villager.EventOnSick(false);
+            //TODO implentar la comparacion si es correcto cambiar a normal
+
+            if (Villager.EventOnSick != null)
+            {
+                Villager.EventOnSick(false);
+            }
+            OnEnable();
+            inputParent.SetActive(false);
         }
-        OnEnable();
+
     }
 }

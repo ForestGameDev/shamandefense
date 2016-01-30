@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Tower : MonoBehaviour {
 
@@ -14,9 +15,14 @@ public class Tower : MonoBehaviour {
 
     static PoolDictionary pool = new PoolDictionary();
 
+    [SerializeField]
+    Text[] inputs;
+
+
     public void SetRequiredSpell(int code)
     {
         requiredSpell = code;
+
     }
 
     void OnEnable()
@@ -24,6 +30,27 @@ public class Tower : MonoBehaviour {
         InputManager.spellCompleted += SpellCheck;
         InputManager.runeSelected += SelectCheck;
         requiredSpell = RequiredSpellManager.GetSpell(2, requiredSpell);
+
+
+        inputs[0].text = InputToString(requiredSpell / 10);
+        inputs[1].text = InputToString(requiredSpell % 10);
+    }
+
+    string InputToString(int input)
+    {
+        switch(input)
+        {
+            case 1:
+                return "A";
+            case 2:
+                return "S";
+            case 3:
+                return "D";
+            case 4:
+                return "F";
+            
+        }
+        return null;
     }
 
     void OnDisable()

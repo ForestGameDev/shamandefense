@@ -36,12 +36,4 @@ public class TowerAttack : MonoBehaviour {
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
     }
-
-    public void OnDisable()
-    {
-
-    }
-
-
-
 }

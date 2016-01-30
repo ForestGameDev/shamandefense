@@ -16,7 +16,7 @@ public class RequiredSpellManager : MonoBehaviour {
             for(int i=0;i< size;++i)
             {
                 number *= 10;
-                number += Random.Range(0, 5);
+                number += Random.Range(1, 5);
             }
             if(!register.Contains(number))
             {
