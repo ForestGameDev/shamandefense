@@ -73,6 +73,7 @@ public class Tower : MonoBehaviour {
             if (distance <= attack.GetRange())
             {
                 enemy.OnAttacked(attack.GetDamage());
+                enemy.speedMultiplier = attack.GetSpeedMultiplier();
             }
         }
         timeSpellStart = Time.time;
