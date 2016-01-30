@@ -5,6 +5,7 @@ public class TowerAttack : MonoBehaviour {
 
     [SerializeField]    float range = 1;
     [SerializeField]    float damage = 100;
+    [SerializeField]    float speedMultiplier = 1;
 
     public float GetRange()
     {
@@ -16,13 +17,9 @@ public class TowerAttack : MonoBehaviour {
         return damage;
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public float GetSpeedMultiplier()
+    {
+        return speedMultiplier;
+    }
+
 }
