@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour {
     UnityAction updateState;
     [HideInInspector]
     public static UnityAction EventOnStop;
+    public static UnityAction RemoveEnemy;
 
     public Transform exitLocation;
     public float exitDistance = 1.0f;
@@ -87,12 +88,14 @@ public class EnemyAI : MonoBehaviour {
         float distance = Vector3.Distance(transform.position, exitLocation.position);
         if (exitDistance >= distance)
         {
+            LevelManager.RemoveEnemy();
             gameObject.SetActive(false);
         }
     }
 
     public void OnDead()
     {
+        LevelManager.RemoveEnemy();
         animator.SetTrigger("Dead");
         StartCoroutine(WaitAndDisable());
         updateState = null;
