@@ -47,10 +47,13 @@ public class VillageManager : MonoBehaviour {
         currentCatastrophe = Catastrophes.NONE;
         InputManager.spellCompleted += OnSpellCheck;
         inputParent.SetActive(false);
+
+        Villager.EventOnDead += OnVillagerDead;
     }
     void OnDisable()
     {
         InputManager.spellCompleted -= OnSpellCheck;
+        Villager.EventOnDead -= OnVillagerDead;
     }
 
     string InputToString(int input)
