@@ -5,8 +5,10 @@ using UnityEngine.UI;
 public class InputUI : MonoBehaviour {
 
     public Text input1, input2, input3;
-    public Image select1, select2, select3;
-    private float timeCompletedCommand = Time.time;
+    public Image select1, select2, select3, spellsDialog;
+    public InputManager inputManager;
+
+    private float timeCompletedCommand;
     private bool commandCompleted;
 
     private int currentStep = 1;
@@ -35,12 +37,14 @@ public class InputUI : MonoBehaviour {
                 input2.text = GetLetter(type);
                 select2.gameObject.SetActive(false);
                 select3.gameObject.SetActive(true);
+                spellsDialog.gameObject.SetActive(true);
                 break;
             case 3:
                 input3.text = GetLetter(type);
                 select3.gameObject.SetActive(false);
                 commandCompleted = true;
                 timeCompletedCommand = Time.time;
+                inputManager.blocked = true;
                 break;
         }
 
@@ -74,6 +78,7 @@ public class InputUI : MonoBehaviour {
 	void Start () {
         select2.gameObject.SetActive(false);
         select3.gameObject.SetActive(false);
+        spellsDialog.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -85,6 +90,8 @@ public class InputUI : MonoBehaviour {
             input3.text = "";
             commandCompleted = false;
             select1.gameObject.SetActive(true);
+            spellsDialog.gameObject.SetActive(false);
+            inputManager.blocked = false;
         }
 	}
 }

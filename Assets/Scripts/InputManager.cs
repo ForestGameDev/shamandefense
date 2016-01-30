@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour {
     public static int spell = 0;
     private InputHandler btn1, btn2, btn3, btn4;
     public int amountRitualSteps;
+    public bool blocked;
 
     public void SetAmountRitualSteps(int amount)
     {
@@ -27,38 +28,40 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        InputHandler btnPressed = null;
-        if (btn1.isPressedOnce())
-            btnPressed = btn1;
-        else if (btn2.isPressedOnce())
-            btnPressed = btn2;
-        else if (btn3.isPressedOnce())
-            btnPressed = btn3;
-        else if (btn4.isPressedOnce())
-            btnPressed = btn4;
-
-        if (btnPressed != null)
+        if (!blocked)
         {
-            int pressedCode;
-            int.TryParse(btnPressed.GetKeyName(), out pressedCode);
-            spell = (spell * 10) + pressedCode;
+            InputHandler btnPressed = null;
+            if (btn1.isPressedOnce())
+                btnPressed = btn1;
+            else if (btn2.isPressedOnce())
+                btnPressed = btn2;
+            else if (btn3.isPressedOnce())
+                btnPressed = btn3;
+            else if (btn4.isPressedOnce())
+                btnPressed = btn4;
 
-            Debug.Log("New spell: " + spell);
+            if (btnPressed != null)
+            {
+                int pressedCode;
+                int.TryParse(btnPressed.GetKeyName(), out pressedCode);
+                spell = (spell * 10) + pressedCode;
 
-            if (spellModified != null)
-                spellModified();
-            CheckSpellCompleted();
+                Debug.Log("New spell: " + spell);
+
+                if (spellModified != null)
+                    spellModified();
+                CheckRuneSelected();
+                CheckSpellCompleted();
+            }
         }
 	}
 
     private void CheckRuneSelected()
     {
-        //Debug.Log(spell + " > " + Mathf.Pow(10, amountRitualSteps - 1));
         if (spell > (Mathf.Pow(10, amountRitualSteps - 2)))
         {
             if (runeSelected != null)
                 runeSelected();
-            spell = 0;
         }
     }
 
