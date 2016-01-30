@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour {
 
@@ -10,9 +11,13 @@ public class EnemySpawner : MonoBehaviour {
         public int probabilityWeight;
     }
 
+    public void AddPath(BezierSpline path)
+    {
+        paths.Add(path);
+    }
 
     [SerializeField] EnemyProbability[] enemyProbability;
-    [SerializeField] BezierSpline[] paths;
+    [SerializeField] List<BezierSpline> paths;
     [SerializeField]    float timer = .1f;
     [SerializeField]    Transform exitLocation;
 
@@ -54,7 +59,7 @@ public class EnemySpawner : MonoBehaviour {
     void Spawn()
     {
         EnemyAI ai = enemyPool.Get(probability.Get()).GetComponent<EnemyAI>();
-        int value = Random.Range(0, paths.Length);
+        int value = Random.Range(0, paths.Count);
         ai.spline = paths[value];
         ai.exitLocation = transform;
         ai.transform.position = transform.position;

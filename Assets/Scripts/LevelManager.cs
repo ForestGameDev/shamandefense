@@ -8,7 +8,8 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] int level = 1;
     [SerializeField] int enemiesPerRound = 100;
 
-    [SerializeField] Text EnemyCounter;
+    [SerializeField] Text enemyCounter;
+    [SerializeField] EnemySpawner enemySpawner;
 
     private static LevelManager instance;
     private int remainingEnemies;
@@ -45,6 +46,6 @@ public class LevelManager : MonoBehaviour {
 	}
 
     private void UpdateCounter(){
-        EnemyCounter.text = "×" + remainingEnemies;
+        enemyCounter.text = "×" + remainingEnemies;
     }
 }
