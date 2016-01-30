@@ -3,10 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class InputUI : MonoBehaviour {
-
+    public GameObject[] bongos;
     public Text input1, input2, input3;
     public Image select1, select2, select3, spellsDialog;
     public InputManager inputManager;
+
+    [SerializeField] AudioClip[] drumAudio;
+    AudioSource audioSource;
 
     private float timeCompletedCommand;
     private bool commandCompleted;
@@ -26,9 +29,13 @@ public class InputUI : MonoBehaviour {
     private void InputDetected()
     {
         int type = InputManager.spell % 10;
+        audioSource.clip = drumAudio[type - 1];
+        audioSource.Play();
+        iTween.ShakeScale(bongos[currentStep - 1],Vector3.up, .25f);
         switch (currentStep)
         {
             case 1:
+                
                 input1.text = GetLetter(type);
                 select1.gameObject.SetActive(false);
                 select2.gameObject.SetActive(true);
@@ -79,6 +86,7 @@ public class InputUI : MonoBehaviour {
         select2.gameObject.SetActive(false);
         select3.gameObject.SetActive(false);
         spellsDialog.gameObject.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame

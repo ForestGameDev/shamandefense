@@ -7,7 +7,9 @@ public class Villager : MonoBehaviour {
     public delegate void EventBool(bool isSick);
 
     public static EventBool EventOnSick;
-    UnityAction EventOnCelebrate;
+    public static UnityAction EventOnCelebrate;
+    public static UnityAction EventOnDead;
+
 
 
     [SerializeField]    float deadTime = 1.0f;
@@ -51,7 +53,7 @@ public class Villager : MonoBehaviour {
 
     void OnCelebrate()
     {
-
+        animator.SetTrigger("Celebration");
     }
 
     public void OnDead()
@@ -60,7 +62,11 @@ public class Villager : MonoBehaviour {
         EventOnCelebrate -= OnCelebrate;
         animator.SetTrigger("Dead");
         OnDisable();
-        villageManager.OnVillagerDead();
+        if(EventOnDead != null)
+        {
+            EventOnDead();
+        }
+        
         StartCoroutine(WaitAndDisable());
     }
 

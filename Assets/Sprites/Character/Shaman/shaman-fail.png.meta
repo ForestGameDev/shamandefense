@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-guid: ff66972fda1ad6048b85ef79d0048b21
-timeCreated: 1454131987
+guid: 6acea3905bafcaa44af14c5fcd0176d8
+timeCreated: 1454189746
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: walk_0
-    21300002: walk_1
-    21300004: walk_2
-    21300006: walk_3
+    21300000: shaman-fail_0
+    21300002: shaman-fail_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,50 +52,54 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: walk_0
+    - name: shaman-fail_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 1
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: walk_1
-      rect:
-        serializedVersion: 2
-        x: 21
-        y: 1
-        width: 11
-        height: 16
+        x: 0
+        y: 0
+        width: 132
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: walk_2
+      outline:
+      - - {x: -3, y: 12}
+        - {x: -6, y: -5}
+        - {x: -5, y: -18}
+        - {x: -7, y: -11}
+        - {x: -22, y: 48}
+        - {x: -59, y: 36}
+        - {x: -59, y: -22}
+        - {x: -24, y: -60}
+        - {x: 53, y: -60}
+        - {x: 53, y: 44}
+        - {x: 52, y: 59}
+        - {x: 0, y: 59}
+        - {x: -5, y: 57}
+    - name: shaman-fail_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 1
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: walk_3
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 1
-        width: 11
-        height: 16
+        x: 132
+        y: 0
+        width: 132
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -3, y: 12}
+        - {x: -6, y: -5}
+        - {x: -5, y: -18}
+        - {x: -7, y: -11}
+        - {x: -22, y: 48}
+        - {x: -59, y: 36}
+        - {x: -59, y: -22}
+        - {x: -24, y: -60}
+        - {x: 53, y: -60}
+        - {x: 53, y: 44}
+        - {x: 52, y: 59}
+        - {x: 0, y: 59}
+        - {x: -5, y: 57}
     outline: []
   spritePackingTag: board
   userData: 
