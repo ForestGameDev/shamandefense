@@ -14,12 +14,15 @@ public class EnemyAI : MonoBehaviour {
     public float exitDistance = 1.0f;
     public float pathDifference = .3f;
 
+    public float velocity = 1;
+
     [Header("Debug")]
     [SerializeField]    float deadTime = 1.0f;
     [SerializeField]    float multiplier;
 
     Animator animator;
     private float progress = 0;
+    public Vector3 angle;
 
 
 
@@ -57,7 +60,10 @@ public class EnemyAI : MonoBehaviour {
             
         }
         Vector3 position = spline.GetPoint(progress);
-        transform.position = position + Quaternion.Euler(0, 0, 90) * spline.GetDirection(progress) * multiplier ;
+       // angle = spline.GetDirection(progress);
+       // transform.Translate(angle* velocity * Time.deltaTime);
+        
+        transform.position = position +  Quaternion.Euler(0, 0, 90) * spline.GetDirection(progress) * multiplier ;
 
     }
 
