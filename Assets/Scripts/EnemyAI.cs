@@ -8,15 +8,18 @@ public class EnemyAI : MonoBehaviour {
     public    BezierSpline spline;
 
     UnityAction updateState;
+    [HideInInspector]
+    public static UnityAction EventOnStop;
 
     public Transform exitLocation;
     public float exitDistance = 1.0f;
     public float pathDifference = .3f;
-
     public float velocity = 1;
 
-    [Header("Debug")]
     [SerializeField]    float deadTime = 1.0f;
+
+    [Header("Debug")]
+
     [SerializeField]    float multiplier;
 
     Animator animator;
@@ -44,6 +47,12 @@ public class EnemyAI : MonoBehaviour {
         progress = 0;
         updateState = WalkingPathState;
         multiplier = Random.Range(-pathDifference, pathDifference);
+        EventOnStop += OnStop;
+    }
+
+    void OnDisable()
+    {
+        EventOnStop -= OnStop;
     }
 
     private void Update()
@@ -97,6 +106,12 @@ public class EnemyAI : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+
+    void OnStop()
+    {
+        animator.Stop();
+        enabled = false;
+    }
 
 
 }

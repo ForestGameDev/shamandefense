@@ -21,6 +21,20 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     Probability<GameObject> probability = new Probability<GameObject>();
 
+    void OnEnable()
+    {
+        EnemyAI.EventOnStop += OnStop;
+    }
+
+    void OnDisable()
+    {
+        EnemyAI.EventOnStop -= OnStop;
+    }
+
+    void OnStop()
+    {
+        CancelInvoke("Spawn");
+    }
 
 	// Use this for initialization
 	void Start () {
