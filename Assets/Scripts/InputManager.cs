@@ -6,6 +6,7 @@ using System.Text;
 public class InputManager : MonoBehaviour {
 
     public static UnityAction spellModified, //to be used by the UI to show the buttons pressed
+                              runeSelected, //activate rune in map and UI
                               spellCompleted; //to be used by the towers to throw an attack
     public static int spell = 0;
     private InputHandler btn1, btn2, btn3, btn4;
@@ -49,6 +50,17 @@ public class InputManager : MonoBehaviour {
             CheckSpellCompleted();
         }
 	}
+
+    private void CheckRuneSelected()
+    {
+        //Debug.Log(spell + " > " + Mathf.Pow(10, amountRitualSteps - 1));
+        if (spell > (Mathf.Pow(10, amountRitualSteps - 2)))
+        {
+            if (runeSelected != null)
+                runeSelected();
+            spell = 0;
+        }
+    }
 
     private void CheckSpellCompleted()
     {

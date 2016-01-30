@@ -20,18 +20,26 @@ public class Tower : MonoBehaviour {
     void OnEnable()
     {
         InputManager.spellCompleted += SpellCheck;
+        InputManager.runeSelected += SelectCheck;
     }
 
     void OnDisable()
     {
         InputManager.spellCompleted -= SpellCheck;
+        InputManager.runeSelected -= SelectCheck;
+    }
+
+    private void SelectCheck()
+    {
+        if (InputManager.spell == requiredSpell)
+        {
+            //TODO: Highlight in UI
+        }
     }
 
     private void SpellCheck()
     {
-        Debug.Log("Hey!");
         int spellFirstPart = InputManager.spell / 10;
-        Debug.Log(spellFirstPart + " == "+ requiredSpell);
         if (spellFirstPart == requiredSpell)
         {
             int type = InputManager.spell % 10;
@@ -40,22 +48,22 @@ public class Tower : MonoBehaviour {
             {
                 case 1: //heal
                     Attack(heal);
-                    areaHeal.GetComponent<Renderer>().enabled = true;
+                    areaHeal.GetComponent<VisibilityManager>().isVisible = true;
                     Debug.Log("heal");
                     break;
                 case 2: //rain
                     Attack(rain);
-                    areaRain.GetComponent<Renderer>().enabled = true;
+                    areaRain.GetComponent<VisibilityManager>().isVisible = true;
                     Debug.Log("rain");
                     break;
                 case 3: //fire
                     Attack(fire);
-                    areaFire.GetComponent<Renderer>().enabled = true;
+                    areaFire.GetComponent<VisibilityManager>().isVisible = true;
                     Debug.Log("fire");
                     break;
                 case 4: //thunder
                     Attack(thunder);
-                    areaThunder.GetComponent<Renderer>().enabled = true;
+                    areaThunder.GetComponent<VisibilityManager>().isVisible = true;
                     Debug.Log("thunder");
                     break;
             }
@@ -115,20 +123,22 @@ public class Tower : MonoBehaviour {
                 areaThunder = area;
         }
 
-        areaHeal.GetComponent<Renderer>().enabled = false;
-        areaRain.GetComponent<Renderer>().enabled = false;
-        areaFire.GetComponent<Renderer>().enabled = false;
-        areaThunder.GetComponent<Renderer>().enabled = false;
+        areaHeal.GetComponent<VisibilityManager>().isVisible = false;
+        areaRain.GetComponent<VisibilityManager>().isVisible = false;
+        areaFire.GetComponent<VisibilityManager>().isVisible = false;
+        areaThunder.GetComponent<VisibilityManager>().isVisible = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (attackPerformed && (Time.time > timeSpellStart + 0.2f))
+        if (attackPerformed && (Time.time > timeSpellStart + 0.5f))
         {
-            areaHeal.GetComponent<Renderer>().enabled = false;
-            areaRain.GetComponent<Renderer>().enabled = false;
-            areaFire.GetComponent<Renderer>().enabled = false;
-            areaThunder.GetComponent<Renderer>().enabled = false;
+            //TODO: hide highlight
+
+            areaHeal.GetComponent<VisibilityManager>().isVisible = false;
+            areaRain.GetComponent<VisibilityManager>().isVisible = false;
+            areaFire.GetComponent<VisibilityManager>().isVisible = false;
+            areaThunder.GetComponent<VisibilityManager>().isVisible = false;
             attackPerformed = false;
         }
 	}
