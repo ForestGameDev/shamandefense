@@ -72,7 +72,8 @@ public class Tower : MonoBehaviour {
 
     void Attack(TowerAttack attack)
     {
-        //AddCircle(attack.GetRange());
+        //attack.ShowParticles();
+        //AddCircle(attack.GetRange()); //To see attack area
         attackPerformed = true;
         for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)
         {
