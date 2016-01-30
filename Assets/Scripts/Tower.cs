@@ -9,7 +9,7 @@ public class Tower : MonoBehaviour {
     [SerializeField]    int requiredSpell;
 
     [SerializeField]    TowerAttack heal, rain, fire, thunder;
-    private Transform areaHeal, areaRain, areaFire, areaThunder;
+    private Transform areaHeal, areaRain, areaFire, areaThunder, baseHighlight;
     private float timeSpellStart;
     private bool attackPerformed;
 
@@ -61,9 +61,10 @@ public class Tower : MonoBehaviour {
 
     private void SelectCheck()
     {
+        Debug.Log("AAA");
         if (InputManager.spell == requiredSpell)
         {
-            //TODO: Highlight in UI
+            baseHighlight.GetComponent<VisibilityManager>().isVisible = true;
         }
     }
 
@@ -76,25 +77,25 @@ public class Tower : MonoBehaviour {
 
             switch (type)
             {
-                case 1: //heal
-                    Attack(heal);
-                    areaHeal.GetComponent<VisibilityManager>().isVisible = true;
-                    Debug.Log("heal");
-                    break;
-                case 2: //rain
+                case 1: //rain
                     Attack(rain);
                     areaRain.GetComponent<VisibilityManager>().isVisible = true;
                     Debug.Log("rain");
                     break;
-                case 3: //fire
+                case 2: //fire
                     Attack(fire);
                     areaFire.GetComponent<VisibilityManager>().isVisible = true;
                     Debug.Log("fire");
                     break;
-                case 4: //thunder
+                case 3: //thunder
                     Attack(thunder);
                     areaThunder.GetComponent<VisibilityManager>().isVisible = true;
                     Debug.Log("thunder");
+                    break;
+                case 4: //heal
+                    Attack(heal);
+                    areaHeal.GetComponent<VisibilityManager>().isVisible = true;
+                    Debug.Log("heal");
                     break;
             }
         }
@@ -107,6 +108,9 @@ public class Tower : MonoBehaviour {
         tmpAttck.SetActive(true);
         //attack.ShowParticles();
         //AddCircle(attack.GetRange()); //To see attack area
+
+        baseHighlight.GetComponent<VisibilityManager>().isVisible = false;
+
         attackPerformed = true;
         for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)
         {
@@ -155,12 +159,15 @@ public class Tower : MonoBehaviour {
                 areaFire = area;
             else if (area.name.Equals("ThunderArea"))
                 areaThunder = area;
+            else if (area.name.Equals("BaseHighlight"))
+                baseHighlight = area;
         }
 
-        areaHeal.GetComponent<VisibilityManager>().isVisible = false;
+        /*areaHeal.GetComponent<VisibilityManager>().isVisible = false;
         areaRain.GetComponent<VisibilityManager>().isVisible = false;
         areaFire.GetComponent<VisibilityManager>().isVisible = false;
         areaThunder.GetComponent<VisibilityManager>().isVisible = false;
+        baseHighlight.GetComponent<VisibilityManager>().isVisible = false;*/
 	}
 	
 	// Update is called once per frame
