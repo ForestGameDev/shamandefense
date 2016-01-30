@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class EnemyAI : MonoBehaviour {
 
     public    BezierSpline spline;
-    public   float duration;
 
     UnityAction updateState;
 
@@ -24,16 +23,20 @@ public class EnemyAI : MonoBehaviour {
     private float progress = 0;
     public Vector3 angle;
 
+    EnemyStats enemyStats;
 
+    SpriteRenderer spriteRender;
 
     void Awake()
     {
+        spriteRender = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         if(animator == null)
         {
             Debug.LogError("EnemyAi need an animator");
             animator.SetTrigger("Reset");
         }
+        enemyStats = GetComponent<EnemyStats>();
     }
 
     void OnEnable()
@@ -45,13 +48,14 @@ public class EnemyAI : MonoBehaviour {
 
     private void Update()
     {
+        if(updateState != null)
         updateState();
     }
 
 
     void WalkingPathState()
     {
-        progress += Time.deltaTime / duration;
+        progress += Time.deltaTime / enemyStats.speed * enemyStats.speedMultiplier;
         if (progress > 1f)
         {
             progress = 1f;
@@ -60,9 +64,10 @@ public class EnemyAI : MonoBehaviour {
             
         }
         Vector3 position = spline.GetPoint(progress);
-       // angle = spline.GetDirection(progress);
+        angle = spline.GetDirection(progress);
+        spriteRender.flipX = angle.x <= 0;
        // transform.Translate(angle* velocity * Time.deltaTime);
-        
+
         transform.position = position +  Quaternion.Euler(0, 0, 90) * spline.GetDirection(progress) * multiplier ;
 
     }
@@ -77,10 +82,11 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
-    void OnDead()
+    public void OnDead()
     {
         animator.SetTrigger("Dead");
         StartCoroutine(WaitAndDisable());
+        updateState = null;
 
     }
 

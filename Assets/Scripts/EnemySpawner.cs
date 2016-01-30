@@ -43,6 +43,7 @@ public class EnemySpawner : MonoBehaviour {
         int value = Random.Range(0, paths.Length);
         ai.spline = paths[value];
         ai.exitLocation = transform;
+        ai.transform.position = transform.position;
         ai.gameObject.SetActive(true);
 
     }
