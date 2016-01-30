@@ -7,8 +7,9 @@ public class RequiredSpellManager : MonoBehaviour {
     static List<int> register = new List<int>();
 
 
-	static int GetSpell(int size)
+	public static int GetSpell(int size, int last = 0)
     {
+        RemoveRegister(last);
        while(true)
         {
             int number = 0;
@@ -25,7 +26,7 @@ public class RequiredSpellManager : MonoBehaviour {
         }
     }
 
-    static void RemoveRegister(int number)
+    public static void RemoveRegister(int number)
     {
         register.Remove(number);
     } 

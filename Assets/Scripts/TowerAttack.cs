@@ -7,14 +7,8 @@ public class TowerAttack : MonoBehaviour {
     [SerializeField]    float damage = 100;
     [SerializeField]    float speedMultiplier = 1;
 
+    [SerializeField]    ParticleSystem particleSys;
 
-    ParticleSystem particle;
-    void Awake()
-    {
-        particle.GetComponent<ParticleSystem>();
-        particle.Stop();
-
-    }
 
     public float GetRange()
     {
@@ -31,9 +25,15 @@ public class TowerAttack : MonoBehaviour {
         return speedMultiplier;
     }
 
-    public  void ShowParticles()
+    public  void OnEnable()
     {
-        particle.Play();
+        particleSys.Emit(20);
     }
+    public void OnDisable()
+    {
+
+    }
+
+
 
 }

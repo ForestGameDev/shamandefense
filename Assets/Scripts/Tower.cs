@@ -12,6 +12,8 @@ public class Tower : MonoBehaviour {
     private float timeSpellStart;
     private bool attackPerformed;
 
+    static PoolDictionary pool = new PoolDictionary();
+
     public void SetRequiredSpell(int code)
     {
         requiredSpell = code;
@@ -21,6 +23,7 @@ public class Tower : MonoBehaviour {
     {
         InputManager.spellCompleted += SpellCheck;
         InputManager.runeSelected += SelectCheck;
+        requiredSpell = RequiredSpellManager.GetSpell(2, requiredSpell);
     }
 
     void OnDisable()
@@ -72,6 +75,9 @@ public class Tower : MonoBehaviour {
 
     void Attack(TowerAttack attack)
     {
+        GameObject tmpAttck = pool.Get(attack.gameObject);
+        tmpAttck.transform.position = transform.position;
+        tmpAttck.SetActive(true);
         //attack.ShowParticles();
         //AddCircle(attack.GetRange()); //To see attack area
         attackPerformed = true;
