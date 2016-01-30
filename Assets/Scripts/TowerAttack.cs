@@ -28,7 +28,15 @@ public class TowerAttack : MonoBehaviour {
     public  void OnEnable()
     {
         particleSys.Emit(20);
+        StartCoroutine(Deactivate());
     }
+
+    IEnumerator Deactivate()
+    {
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
+    }
+
     public void OnDisable()
     {
 
