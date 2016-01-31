@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour {
         yield return new WaitForSeconds(1.0f);
         level++;
         enemiesPerRound++;
-        if (level < 5)
+        if (level < 4)
         {
 
             if (ChangeScreenGUI)

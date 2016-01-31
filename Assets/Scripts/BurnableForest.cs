@@ -26,9 +26,10 @@ public class BurnableForest : MonoBehaviour {
         	
     public void OnBurn(int index)
     {
-        if(this.index == index)
+        if(this.index <= index)
         {
             spriteRen.enabled = true;
+            Destroy(this);
         }
         
     }
