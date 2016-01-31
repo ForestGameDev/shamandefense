@@ -18,7 +18,7 @@ public class Tower : MonoBehaviour {
     static PoolDictionary pool = new PoolDictionary();
 
     [SerializeField]
-    Text[] inputs;
+    Image[] inputs;
 
 
     public void SetRequiredSpell(int code)
@@ -39,9 +39,14 @@ public class Tower : MonoBehaviour {
         InputManager.runeSelected += SelectCheck;
       //  requiredSpell = RequiredSpellManager.GetSpell(2, requiredSpell);
 
+        int leftCode = requiredSpell / 10;
+        int rightCode = requiredSpell % 10;
 
-        inputs[0].text = InputToString(requiredSpell / 10);
-        inputs[1].text = InputToString(requiredSpell % 10);
+        inputs[0].transform.eulerAngles = new Vector3(0, 0, 90 * leftCode);
+        inputs[1].transform.eulerAngles = new Vector3(0, 0, 90 * rightCode);
+
+        //inputs[0].text = InputToString(requiredSpell / 10);
+        //inputs[1].text = InputToString(requiredSpell % 10);
     }
 
     string InputToString(int input)

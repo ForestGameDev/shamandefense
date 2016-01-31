@@ -26,6 +26,9 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     Probability<GameObject> probability = new Probability<GameObject>();
 
+    private float previousTime, waitTime;
+    [SerializeField] float maxWaitTime = 3;
+
     void OnEnable()
     {
         EnemyAI.EventOnStop += OnStop;
@@ -49,13 +52,31 @@ public class EnemySpawner : MonoBehaviour {
             probability.Add(prob.enemyPrefab, prob.probabilityWeight);
         }
         
-        InvokeRepeating("Spawn", .01f, timer);
+        //InvokeRepeating("Spawn", .01f, timer);
 
+        previousTime = Time.time;
+        waitTime = maxWaitTime;
     }
 
+    bool reducingWait = true;
     void Update()
     {
+        if (Time.time > previousTime + waitTime)
+        {
+            previousTime = Time.time;
+            Spawn();
 
+            if (waitTime < 0.2)
+            {
+                reducingWait = false;
+            }
+            if (waitTime > maxWaitTime)
+            {
+                reducingWait = true;
+            }
+
+            waitTime = waitTime * (0.5f + (reducingWait ? 0 : 1)); //waitTime = waitTime + (0.5f * (reducingWait ? -1 : 1));
+        }
     }
 
     void Spawn()
