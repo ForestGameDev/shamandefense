@@ -32,7 +32,14 @@ public class EnemySpawner : MonoBehaviour {
     Probability<GameObject> probability = new Probability<GameObject>();
 
     private float previousTime, waitTime;
-    [SerializeField] float maxWaitTime = 3;
+    [SerializeField] float maxWaitTime = 7;
+    [SerializeField] float minWaitTime = 0.5f;
+
+    public void SetWaitTimes(float maxTime, float minTime)
+    {
+        maxWaitTime = maxTime;
+        minWaitTime = minTime;
+    }
 
     void OnEnable()
     {
@@ -71,7 +78,7 @@ public class EnemySpawner : MonoBehaviour {
             previousTime = Time.time;
             Spawn();
 
-            if (waitTime < 0.5)
+            if (waitTime < minWaitTime)
             {
                 reducingWait = false;
             }
@@ -80,7 +87,7 @@ public class EnemySpawner : MonoBehaviour {
                 reducingWait = true;
             }
 
-            waitTime = waitTime * (0.5f + (reducingWait ? 0 : 1)); //waitTime = waitTime + (0.5f * (reducingWait ? -1 : 1));
+            waitTime = waitTime * (minWaitTime + (reducingWait ? 0 : 1)); //waitTime = waitTime + (0.5f * (reducingWait ? -1 : 1));
         }
     }
 
