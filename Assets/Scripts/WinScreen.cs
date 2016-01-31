@@ -5,7 +5,7 @@ public class WinScreen : MonoBehaviour {
 
     [SerializeField]    float waitTime = 3;
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
         StartCoroutine(End());
     }
 
