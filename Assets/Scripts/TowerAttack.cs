@@ -7,8 +7,8 @@ public class TowerAttack : MonoBehaviour {
     [SerializeField]    float damage = 100;
     [SerializeField]    float speedMultiplier = 1;
 
-    [SerializeField]    ParticleSystem particleSys;
 
+    Animator anim;
 
     public float GetRange()
     {
@@ -25,15 +25,16 @@ public class TowerAttack : MonoBehaviour {
         return speedMultiplier;
     }
 
-    public  void OnEnable()
+    public void Update()
     {
-        particleSys.Emit(20);
-        StartCoroutine(Deactivate());
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
-    IEnumerator Deactivate()
+    public void Awake()
     {
-        yield return new WaitForSeconds(1);
-        gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
     }
 }

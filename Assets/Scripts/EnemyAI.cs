@@ -85,6 +85,7 @@ public class EnemyAI : MonoBehaviour {
                 {
                     kidnap = tmpVilla;
                     kidnap.kidnapped = true;
+                    kidnap.GetComponent<AudioSource>().Play();
                     break;   
                 }
             }

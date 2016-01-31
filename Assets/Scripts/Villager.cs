@@ -19,6 +19,8 @@ public class Villager : MonoBehaviour {
     public bool kidnapped;
 
 
+
+
     Animator animator;
 
 	// Use this for initialization

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 86910985848aae74ea28d95857986db1
-timeCreated: 1454189755
+timeCreated: 1454259945
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -61,16 +61,16 @@ TextureImporter:
         y: 0
         width: 105
         height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6556852, y: 0.04267438}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -45.5, y: 56}
-        - {x: -45.5, y: -33}
-        - {x: -32.5, y: -60}
-        - {x: 48.5, y: -60}
-        - {x: 48.5, y: 46}
-        - {x: 29.5, y: 56}
+      - - {x: -61.846947, y: 110.879074}
+        - {x: -61.846947, y: 21.879074}
+        - {x: -48.846947, y: -5.120926}
+        - {x: 32.153053, y: -5.120926}
+        - {x: 32.153053, y: 100.879074}
+        - {x: 13.153053, y: 110.879074}
     - name: shaman-idle_1
       rect:
         serializedVersion: 2
@@ -78,16 +78,16 @@ TextureImporter:
         y: 0
         width: 105
         height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6297377, y: 0.04267438}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -45.5, y: 60}
-        - {x: -45.5, y: -19}
-        - {x: -19.5, y: -60}
-        - {x: 42.5, y: -60}
-        - {x: 42.5, y: 28}
-        - {x: 14.5, y: 60}
+      - - {x: -59.122467, y: 114.879074}
+        - {x: -59.122467, y: 35.879074}
+        - {x: -33.122467, y: -5.120926}
+        - {x: 28.877533, y: -5.120926}
+        - {x: 28.877533, y: 82.879074}
+        - {x: 0.87753296, y: 114.879074}
     - name: shaman-idle_2
       rect:
         serializedVersion: 2
@@ -95,18 +95,18 @@ TextureImporter:
         y: 0
         width: 105
         height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6297377, y: 0.04267438}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -49.5, y: 56}
-        - {x: -52.5, y: 51}
-        - {x: -52.5, y: -19}
-        - {x: -39.5, y: -59}
-        - {x: -37.5, y: -60}
-        - {x: 36.5, y: -60}
-        - {x: 36.5, y: 32}
-        - {x: -7.5, y: 56}
+      - - {x: -63.122467, y: 110.879074}
+        - {x: -66.12247, y: 105.879074}
+        - {x: -66.12247, y: 35.879074}
+        - {x: -53.122467, y: -4.120926}
+        - {x: -51.122467, y: -5.120926}
+        - {x: 22.877533, y: -5.120926}
+        - {x: 22.877533, y: 86.879074}
+        - {x: -21.122467, y: 110.879074}
     - name: shaman-idle_3
       rect:
         serializedVersion: 2
@@ -114,16 +114,16 @@ TextureImporter:
         y: 0
         width: 105
         height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6297377, y: 0.04267438}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -45.5, y: 60}
-        - {x: -45.5, y: -19}
-        - {x: -19.5, y: -60}
-        - {x: 42.5, y: -60}
-        - {x: 42.5, y: 28}
-        - {x: 14.5, y: 60}
+      - - {x: -59.122467, y: 114.879074}
+        - {x: -59.122467, y: 35.879074}
+        - {x: -33.122467, y: -5.120926}
+        - {x: 28.877533, y: -5.120926}
+        - {x: 28.877533, y: 82.879074}
+        - {x: 0.87753296, y: 114.879074}
     outline: []
   spritePackingTag: board
   userData: 
