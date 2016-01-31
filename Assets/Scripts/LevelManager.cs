@@ -11,28 +11,48 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] Text enemyCounter;
     [SerializeField] EnemySpawner enemySpawner;
 
+    [SerializeField]
+    Tower[] towersLvl1, towersLvl2, towersLvl3;
+
+    [SerializeField] BezierSpline path2, path3;
+
     private static LevelManager instance;
     private int remainingEnemies;
     private bool completingLevel;
 
     public static void RemoveEnemy()
     {
-        if (!instance.completingLevel)
+        instance.InstanceRemoveEnemy();
+    }
+
+    private void InstanceRemoveEnemy()
+    {
+        if (!completingLevel)
         {
-            if (instance.remainingEnemies > 0)
-                instance.remainingEnemies -= 1;
+            if (remainingEnemies > 0)
+                remainingEnemies -= 1;
             else
             {
-                instance.completingLevel = true;
+                completingLevel = true;
                 for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)
                 {
                     EnemyStats enemy = EnemyManager.Instance.activeEnemies[i];
                     enemy.OnAttacked(9999);
                 }
 
-                instance.level++;
-                instance.completingLevel = false;
-                instance.remainingEnemies = instance.enemiesPerRound;
+                level++;
+
+                if (level == 2)
+                {
+                    enemySpawner.AddPath(path2);
+                }
+                else if (level == 3)
+                {
+                    enemySpawner.AddPath(path3);
+                }
+
+                completingLevel = false;
+                remainingEnemies = enemiesPerRound;
             }
             instance.UpdateCounter();
         }
