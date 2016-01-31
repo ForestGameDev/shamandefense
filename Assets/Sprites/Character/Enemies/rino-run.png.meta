@@ -1,0 +1,136 @@
+fileFormatVersion: 2
+guid: f2422b8bcc282824bba7546150d4e2c4
+timeCreated: 1454204364
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: rino-run_0
+    21300002: rino-run_1
+    21300004: rino-run_2
+    21300006: rino-run_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: rino-run_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 129
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27.5, y: 64}
+        - {x: 16.5, y: 68}
+        - {x: -48.5, y: 68}
+        - {x: -54.5, y: 56}
+        - {x: -54.5, y: -80}
+        - {x: 46.5, y: -80}
+        - {x: 51.5, y: -78}
+        - {x: 51.5, y: 27}
+    - name: rino-run_1
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 129
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.5, y: 71}
+        - {x: -51.5, y: 65}
+        - {x: -51.5, y: -40}
+        - {x: -41.5, y: -80}
+        - {x: 33.5, y: -80}
+        - {x: 33.5, y: 39}
+        - {x: 23.5, y: 71}
+    - name: rino-run_2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 129
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.5, y: 68}
+        - {x: -24.5, y: 68}
+        - {x: -29.5, y: 66}
+        - {x: -51.5, y: 56}
+        - {x: -51.5, y: -80}
+        - {x: 43.5, y: -80}
+        - {x: 48.5, y: -78}
+        - {x: 48.5, y: -32}
+        - {x: 27.5, y: 64}
+    - name: rino-run_3
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 0
+        width: 129
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.5, y: 71}
+        - {x: -51.5, y: 65}
+        - {x: -51.5, y: -40}
+        - {x: -41.5, y: -80}
+        - {x: 33.5, y: -80}
+        - {x: 33.5, y: 39}
+        - {x: 23.5, y: 71}
+    outline: []
+  spritePackingTag: board
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -75,7 +75,7 @@ public class EnemyAI : MonoBehaviour {
         }
         Vector3 position = spline.GetPoint(progress);
         angle = spline.GetDirection(progress);
-        spriteRender.flipX = angle.x <= 0;
+        spriteRender.flipX = angle.x >= 0;
        // transform.Translate(angle* velocity * Time.deltaTime);
 
         transform.position = position +  Quaternion.Euler(0, 0, 90) * spline.GetDirection(progress) * multiplier ;
