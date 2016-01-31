@@ -37,7 +37,7 @@ public class Tower : MonoBehaviour {
     {
         InputManager.spellCompleted += SpellCheck;
         InputManager.runeSelected += SelectCheck;
-        requiredSpell = RequiredSpellManager.GetSpell(2, requiredSpell);
+      //  requiredSpell = RequiredSpellManager.GetSpell(2, requiredSpell);
 
 
         inputs[0].text = InputToString(requiredSpell / 10);
