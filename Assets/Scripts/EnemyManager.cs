@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour {
             if (mInstance == null)
             {
                 GameObject go = new GameObject();
+                DontDestroyOnLoad(go);
                 mInstance = go.AddComponent<EnemyManager>();
             }
             return mInstance;
@@ -30,6 +31,11 @@ public class EnemyManager : MonoBehaviour {
     void OnDestroy()
     {
         isQuitting = true;
+    }
+
+    public void Clear()
+    {
+        activeEnemies.Clear();
     }
     
 }
