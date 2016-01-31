@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 
     public static EventInt OnChangeLevel;
     [SerializeField]
-    GameObject ChangeScreenGUI, GameOverScreen;
+    GameObject ChangeScreenGUI, EndScreen;
 
     [SerializeField] int level = 1;
     [SerializeField] int enemiesPerRound = 100;
@@ -57,28 +57,50 @@ public class LevelManager : MonoBehaviour {
                     EnemyStats enemy = EnemyManager.Instance.activeEnemies[i];
                     enemy.OnAttacked(9999);
                 }
-                if(ChangeScreenGUI)
-                {
-                    ChangeScreenGUI.SetActive(true);
-                }
 
                 level++;
-                if(OnChangeLevel != null)
-                {
-                    OnChangeLevel(level);
-                }
-               
-                if (level == 2)
-                {
-                    enemySpawner.AddPath(path2);
-                }
-                else if (level == 3)
-                {
-                    enemySpawner.AddPath(path3);
-                }
 
-                completingLevel = false;
-                remainingEnemies = enemiesPerRound;
+                if (level < 4)
+                {
+                    if (ChangeScreenGUI)
+                    {
+                        ChangeScreenGUI.SetActive(true);
+                    }
+
+
+                    if (OnChangeLevel != null)
+                    {
+                        OnChangeLevel(level);
+                    }
+
+                    if (level == 2)
+                    {
+                        enemySpawner.AddPath(path2);
+                    }
+                    else if (level == 3)
+                    {
+                        enemySpawner.AddPath(path3);
+                    }
+
+                    completingLevel = false;
+                    remainingEnemies = enemiesPerRound;
+                }
+                else
+                {
+                    if (EndScreen)
+                    {
+                        EndScreen.SetActive(true);
+                    }
+
+                    /*if (OnChangeLevel != null)
+                    {
+                        OnChangeLevel(level);
+                    }*/
+                    enemySpawner.SetWaitTimes(0.3f, 0.1f);
+
+                    completingLevel = false;
+                    remainingEnemies = 9999;
+                }
             }
             UpdateCounter();
         }
