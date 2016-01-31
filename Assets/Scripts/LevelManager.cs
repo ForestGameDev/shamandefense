@@ -52,58 +52,66 @@ public class LevelManager : MonoBehaviour {
                 remainingEnemies -= 1;
             if (remainingEnemies <= 0)
             {
-                completingLevel = true;
-                for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)
-                {
-                    EnemyStats enemy = EnemyManager.Instance.activeEnemies[i];
-                    enemy.OnAttacked(9999);
-                }
-
-                level++;
-
-                if (level < 4)
-                {
-                    if (ChangeScreenGUI)
-                    {
-                        ChangeScreenGUI.SetActive(true);
-                    }
-
-
-                    if (OnChangeLevel != null)
-                    {
-                        OnChangeLevel(level);
-                    }
-
-                    if (level == 2)
-                    {
-                        enemySpawner.AddPath(path2);
-                    }
-                    else if (level == 3)
-                    {
-                        enemySpawner.AddPath(path3);
-                    }
-
-                    completingLevel = false;
-                    remainingEnemies = enemiesPerRound;
-                }
-                else
-                {
-                    if (EndScreen)
-                    {
-                        EndScreen.SetActive(true);
-                    }
-
-                    /*if (OnChangeLevel != null)
-                    {
-                        OnChangeLevel(level);
-                    }*/
-                    enemySpawner.SetWaitTimes(0.3f, 0.1f);
-
-                    completingLevel = false;
-                    remainingEnemies = 9999;
-                }
+                StartCoroutine(ChangeWave());
             }
             UpdateCounter();
+        }
+    }
+
+
+    IEnumerator ChangeWave()
+    {
+        completingLevel = true;
+        for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)
+        {
+            EnemyStats enemy = EnemyManager.Instance.activeEnemies[i];
+            enemy.OnAttacked(9999);
+        }
+        GetComponent<AudioSource>().Play();
+
+        yield return new WaitForSeconds(1.0f);
+        level++;
+
+        if (level < 4)
+        {
+            if (ChangeScreenGUI)
+            {
+                ChangeScreenGUI.SetActive(true);
+            }
+
+
+            if (OnChangeLevel != null)
+            {
+                OnChangeLevel(level);
+            }
+
+            if (level == 2)
+            {
+                enemySpawner.AddPath(path2);
+            }
+            else if (level == 3)
+            {
+                enemySpawner.AddPath(path3);
+            }
+
+            completingLevel = false;
+            remainingEnemies = enemiesPerRound;
+        }
+        else
+        {
+            if (EndScreen)
+            {
+                EndScreen.SetActive(true);
+            }
+
+            /*if (OnChangeLevel != null)
+            {
+                OnChangeLevel(level);
+            }*/
+            enemySpawner.SetWaitTimes(0.3f, 0.1f);
+
+            completingLevel = false;
+            remainingEnemies = 9999;
         }
     }
 

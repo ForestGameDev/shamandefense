@@ -135,6 +135,11 @@ public class Tower : MonoBehaviour {
 
     void Attack(TowerAttack attack)
     {
+        areaHeal.GetComponent<VisibilityManager>().isVisible = false;
+        areaRain.GetComponent<VisibilityManager>().isVisible = false;
+        areaFire.GetComponent<VisibilityManager>().isVisible = false;
+        areaThunder.GetComponent<VisibilityManager>().isVisible = false;
+
         GameObject tmpAttck = pool.Get(attack.gameObject);
         tmpAttck.transform.position = transform.position;
         tmpAttck.SetActive(true);
