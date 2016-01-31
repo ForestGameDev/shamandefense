@@ -15,6 +15,8 @@ public class Villager : MonoBehaviour {
     [SerializeField]    float deadTime = 1.0f;
     VillageManager villageManager;
 
+    [HideInInspector]
+    public bool kidnapped;
 
 
     Animator animator;
@@ -32,6 +34,7 @@ public class Villager : MonoBehaviour {
         animator.SetBool("Sick", false);
         animator.SetTrigger("Reset");
         villageManager.villagers.Add(this);
+        kidnapped = false;
     }
 
     void OnDisable()
@@ -43,7 +46,6 @@ public class Villager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
     void OnSick(bool isSick)

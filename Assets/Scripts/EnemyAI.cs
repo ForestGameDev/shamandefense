@@ -30,9 +30,13 @@ public class EnemyAI : MonoBehaviour {
     EnemyStats enemyStats;
 
     SpriteRenderer spriteRender;
+    VillageManager villageManager;
+
+    Villager kidnap;
 
     void Awake()
     {
+        villageManager = GameObject.FindObjectOfType<VillageManager>();
         spriteRender = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         if(animator == null)
@@ -49,11 +53,16 @@ public class EnemyAI : MonoBehaviour {
         updateState = WalkingPathState;
         multiplier = Random.Range(-pathDifference, pathDifference);
         EventOnStop += OnStop;
+        kidnap = null;
     }
 
     void OnDisable()
     {
         EventOnStop -= OnStop;
+        if(kidnap)
+        {
+            kidnap.gameObject.SetActive(false);
+        }
     }
 
     private void Update()
@@ -70,6 +79,19 @@ public class EnemyAI : MonoBehaviour {
         {
             progress = 1f;
             updateState = KidnapingState;
+            for(int i=0; i <villageManager.villagers.Count;++i)
+            {
+                Villager tmpVilla =  villageManager.villagers[i];
+                if(tmpVilla.kidnapped == false)
+                {
+                    kidnap = tmpVilla;
+                    kidnap.kidnapped = true;
+                    break;
+                    
+                }
+            }
+            
+
             animator.SetTrigger("Kidnap");
             
         }
@@ -85,10 +107,15 @@ public class EnemyAI : MonoBehaviour {
     void KidnapingState()
     {
         transform.position = Vector3.MoveTowards(transform.position, exitLocation.position, Time.deltaTime);
+        if(kidnap)
+        {
+            kidnap.transform.position = Vector3.MoveTowards(kidnap.transform.position, transform.position, Time.deltaTime);
+        }
+        
         float distance = Vector3.Distance(transform.position, exitLocation.position);
         if (exitDistance >= distance)
         {
-            LevelManager.RemoveEnemy();
+                LevelManager.RemoveEnemy();
             gameObject.SetActive(false);
         }
     }
