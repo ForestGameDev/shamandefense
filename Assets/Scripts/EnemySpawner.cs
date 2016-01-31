@@ -51,10 +51,12 @@ public class EnemySpawner : MonoBehaviour {
         
         InvokeRepeating("Spawn", .01f, timer);
 
-        
-
     }
 
+    void Update()
+    {
+
+    }
 
     void Spawn()
     {

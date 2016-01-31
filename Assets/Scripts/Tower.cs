@@ -13,6 +13,8 @@ public class Tower : MonoBehaviour {
     private float timeSpellStart;
     private bool attackPerformed;
 
+    [SerializeField] int levelIndex;
+
     static PoolDictionary pool = new PoolDictionary();
 
     [SerializeField]
@@ -25,11 +27,17 @@ public class Tower : MonoBehaviour {
 
     }
 
+    void Awake()
+    {
+        LevelManager.OnChangeLevel += OnChangeLevel;
+        gameObject.SetActive(false);
+    }
+
     void OnEnable()
     {
         InputManager.spellCompleted += SpellCheck;
         InputManager.runeSelected += SelectCheck;
-        requiredSpell = RequiredSpellManager.GetSpell(2, requiredSpell);
+      //  requiredSpell = RequiredSpellManager.GetSpell(2, requiredSpell);
 
 
         inputs[0].text = InputToString(requiredSpell / 10);
@@ -58,6 +66,16 @@ public class Tower : MonoBehaviour {
         InputManager.spellCompleted -= SpellCheck;
         InputManager.runeSelected -= SelectCheck;
     }
+
+    void OnChangeLevel(int newLevel)
+    {
+        if(levelIndex <= newLevel)
+        {
+            gameObject.SetActive(true);
+            LevelManager.OnChangeLevel -= OnChangeLevel;
+        }
+   }
+
 
     private void SelectCheck()
     {

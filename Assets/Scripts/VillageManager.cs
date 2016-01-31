@@ -35,9 +35,7 @@ public class VillageManager : MonoBehaviour {
     public List<Villager> villagers = new List<Villager>();
 
 
-    
-
-
+  
     [SerializeField] UnityAction currentState;
 
     // Use this for initialization

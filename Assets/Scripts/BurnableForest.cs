@@ -4,21 +4,16 @@ using UnityEngine.Events;
 
 public class BurnableForest : MonoBehaviour {
 
-    // Use this for initialization
-    public delegate void EventInt(int  index);
-
-    static public EventInt EventOnBurn;
-
     [SerializeField]   int index = -1;
 
     void OnEnable()
     {
-        EventOnBurn += OnBurn;
+        LevelManager.OnChangeLevel += OnBurn;
     }
 
     void OnDisable()
     {
-        EventOnBurn -= OnBurn;
+        LevelManager.OnChangeLevel -= OnBurn;
     }
 
         	
