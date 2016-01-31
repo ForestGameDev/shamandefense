@@ -68,7 +68,22 @@ public class EnemySpawner : MonoBehaviour {
 
         previousTime = Time.time;
         waitTime = maxWaitTime;
+        StartCoroutine(OnSpawn());
     }
+
+    IEnumerator OnSpawn()
+    {
+        yield return new WaitForSeconds(1.0f);
+       
+        EnemyAI ai = Instantiate<GameObject>(enemyProbability[0].enemyPrefab).GetComponent<EnemyAI>();
+        int value = Random.Range(0, paths.Count);
+        ai.spline = paths[value];
+        ai.exitLocation = exitLocation;
+        ai.transform.position = transform.position;
+        ai.gameObject.SetActive(true);
+
+    }
+
 
     bool reducingWait = true;
     void Update()

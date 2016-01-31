@@ -16,7 +16,7 @@ public class StartScreenManager : MonoBehaviour {
 
     private void CheckStart()
     {
-        if (InputManager.spell == 432)
+        if (InputManager.spell == 412)
             SceneManager.LoadScene("World1-1");
 
         if (InputManager.spell == 244)

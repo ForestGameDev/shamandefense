@@ -71,9 +71,10 @@ public class LevelManager : MonoBehaviour {
 
         yield return new WaitForSeconds(1.0f);
         level++;
-
-        if (level < 4)
+        enemiesPerRound++;
+        if (level < 5)
         {
+
             if (ChangeScreenGUI)
             {
                 ChangeScreenGUI.SetActive(true);
@@ -96,6 +97,7 @@ public class LevelManager : MonoBehaviour {
 
             completingLevel = false;
             remainingEnemies = enemiesPerRound;
+            UpdateCounter();
         }
         else
         {
