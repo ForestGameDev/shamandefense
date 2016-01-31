@@ -111,7 +111,8 @@ public class LevelManager : MonoBehaviour {
             enemySpawner.SetWaitTimes(0.3f, 0.1f);
 
             completingLevel = false;
-            remainingEnemies = 9999;
+            remainingEnemies = 999;
+            UpdateCounter();
         }
     }
 
