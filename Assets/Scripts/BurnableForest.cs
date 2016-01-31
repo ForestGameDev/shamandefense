@@ -9,6 +9,7 @@ public class BurnableForest : MonoBehaviour {
     void OnEnable()
     {
         LevelManager.OnChangeLevel += OnBurn;
+        spriteRen.enabled = false;
     }
 
     void OnDisable()
@@ -16,23 +17,19 @@ public class BurnableForest : MonoBehaviour {
         LevelManager.OnChangeLevel -= OnBurn;
     }
 
+    SpriteRenderer spriteRen;
+    void Awake()
+    {
+        spriteRen = GetComponent<SpriteRenderer>();
+    }
+
         	
     public void OnBurn(int index)
     {
         if(this.index == index)
         {
-            StartCoroutine(BurnCoroutine());
+            spriteRen.enabled = true;
         }
         
-    }
-
-    IEnumerator BurnCoroutine()
-    {
-        foreach (Transform child in transform)
-        {
-            yield return new WaitForSeconds(.1f);
-            child.gameObject.SetActive(false);
-        }
-        gameObject.SetActive(false);
     }
 }
