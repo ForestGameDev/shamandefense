@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        spell = 0;
         btnL = new InputHandler("L");
         btnD = new InputHandler("D");
         btnR = new InputHandler("R");
