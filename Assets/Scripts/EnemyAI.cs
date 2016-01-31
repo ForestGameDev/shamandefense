@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 public class EnemyAI : MonoBehaviour {
@@ -71,7 +72,7 @@ public class EnemyAI : MonoBehaviour {
         updateState();
     }
 
-
+    private bool gameOver;
     void WalkingPathState()
     {
         progress += Time.deltaTime / enemyStats.speed * enemyStats.speedMultiplier;
@@ -79,25 +80,22 @@ public class EnemyAI : MonoBehaviour {
         {
             progress = 1f;
             updateState = KidnapingState;
-            for(int i=0; i <villageManager.villagers.Count;++i)
+
+            int i;
+            for(i=0; i <villageManager.villagers.Count;++i)
             {
                 Villager tmpVilla =  villageManager.villagers[i];
                 if(tmpVilla.kidnapped == false)
                 {
                     kidnap = tmpVilla;
                     kidnap.kidnapped = true;
-                    break;
-                    
+                    break;   
                 }
             }
-            if(kidnap == null)
-            {
-                //TODO mostrar pantalla de perdiste
-            }
+            if ((i + 1) == villageManager.villagers.Count)
+                gameOver = true;
             
-
-            animator.SetTrigger("Kidnap");
-            
+            animator.SetTrigger("Kidnap");                
         }
         Vector3 position = spline.GetPoint(progress);
         angle = spline.GetDirection(progress);
@@ -121,6 +119,7 @@ public class EnemyAI : MonoBehaviour {
         {
                 LevelManager.RemoveEnemy();
             gameObject.SetActive(false);
+            SceneManager.LoadScene("GameOver");
         }
     }
 

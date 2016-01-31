@@ -74,6 +74,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        EnemyManager.isQuitting = false;
         instance = this;
         remainingEnemies = enemiesPerRound;
         UpdateCounter();
