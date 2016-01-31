@@ -4,18 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreenManager : MonoBehaviour {
 
-    [SerializeField]
-    float waitTime = 3;
+    [SerializeField] float wait = 3;
+
     // Use this for initialization
-    void OnEnable()
-    {
-        StartCoroutine(End());
-    }
-
-
-    IEnumerator End()
-    {
-        yield return new WaitForSeconds(waitTime);
-        gameObject.SetActive(false);
-    }
+ 	void Start () {
+         StartCoroutine(Restart());
+ 	}
+ 
+     IEnumerator Restart()
+     {
+         yield return new WaitForSeconds(wait);
+         SceneManager.LoadScene("World1-1");
+     }
 }

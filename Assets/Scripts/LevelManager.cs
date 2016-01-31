@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -39,28 +40,7 @@ public class LevelManager : MonoBehaviour {
 
     private void InstanceGameOver()
     {
-        startingGameOver = true;
-        if (GameOverScreen)
-        {
-            GameOverScreen.SetActive(true);
-        }
-        for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)
-        {
-            EnemyStats enemy = EnemyManager.Instance.activeEnemies[i];
-            enemy.OnAttacked(9999);
-        }
-
-        level = 1;
-        if (OnChangeLevel != null)
-        {
-            OnChangeLevel(level);
-        }
-
-        enemySpawner.ResetPaths();
-        remainingEnemies = enemiesPerRound;
-        UpdateCounter();
-
-        startingGameOver = false;
+        SceneManager.LoadScene("GameOver");
     }
 
     private void InstanceRemoveEnemy()

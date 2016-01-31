@@ -72,6 +72,11 @@ public class Tower : MonoBehaviour {
         InputManager.runeSelected -= SelectCheck;
     }
 
+    void OnDestroy()
+    {
+        LevelManager.OnChangeLevel -= OnChangeLevel;
+    }
+
     void OnChangeLevel(int newLevel)
     {
         if(levelIndex <= newLevel)
