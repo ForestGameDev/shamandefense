@@ -61,7 +61,7 @@ public class EnemySpawner : MonoBehaviour {
         EnemyAI ai = enemyPool.Get(probability.Get()).GetComponent<EnemyAI>();
         int value = Random.Range(0, paths.Count);
         ai.spline = paths[value];
-        ai.exitLocation = transform;
+        ai.exitLocation = exitLocation;
         ai.transform.position = transform.position;
         ai.gameObject.SetActive(true);
 

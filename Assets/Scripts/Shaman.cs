@@ -5,9 +5,6 @@ public class Shaman : MonoBehaviour {
 
 
     Animator animator;
-
-    float randomPosibility = .99f;
-    bool isDancing = false;
 	// Use this for initialization
 
     void OnEnable()

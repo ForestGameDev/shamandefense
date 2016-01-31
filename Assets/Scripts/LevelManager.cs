@@ -5,6 +5,10 @@ using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour {
 
+    public delegate void EventInt(int index);
+
+    public static EventInt OnChangeLevel;
+
     [SerializeField] int level = 1;
     [SerializeField] int enemiesPerRound = 100;
 
@@ -41,7 +45,11 @@ public class LevelManager : MonoBehaviour {
                 }
 
                 level++;
-
+                if(OnChangeLevel != null)
+                {
+                    OnChangeLevel(level);
+                }
+               
                 if (level == 2)
                 {
                     enemySpawner.AddPath(path2);
@@ -63,7 +71,12 @@ public class LevelManager : MonoBehaviour {
         instance = this;
         remainingEnemies = enemiesPerRound;
         UpdateCounter();
-	}
+        if (OnChangeLevel != null)
+        {
+            OnChangeLevel(1);
+        }
+
+    }
 
     private void UpdateCounter(){
         enemyCounter.text = "×" + remainingEnemies;

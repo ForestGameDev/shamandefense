@@ -81,7 +81,7 @@ class InputHandler
 {
     private bool wasPressed;
     private string key;
-    private int sign = 0;
+   // private int sign = 0;
 
     public InputHandler(string keyName)
     {
