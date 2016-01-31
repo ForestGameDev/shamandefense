@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour {
     public static void GameOver()
     {
         EnemyManager.Instance.Clear();
+        Tower.pool.Clear();
         instance.InstanceGameOver();
     }
 

@@ -3,8 +3,20 @@ using System.Collections;
 
 public class Shaman : MonoBehaviour {
 
+    [SerializeField]
+    Animator _animator;
 
-    Animator animator;
+    Animator animator
+    {
+        get
+        {
+            if(_animator == null)
+            {
+                _animator = GetComponent<Animator>();
+            }
+            return _animator;
+        }
+    }
 	// Use this for initialization
 
     void OnEnable()
@@ -13,6 +25,7 @@ public class Shaman : MonoBehaviour {
         InputManager.spellModified += OnSpellModified;
         InputManager.spellCompleted += OnSpellComplete;
         Villager.EventOnDead += OnVillagerDead;
+
         animator.SetTrigger("Reset");
 
     }
@@ -22,14 +35,9 @@ public class Shaman : MonoBehaviour {
         Villager.EventOnCelebrate -= OnCelebrate;
         InputManager.spellModified -= OnSpellModified;
         InputManager.spellCompleted -= OnSpellComplete;
-        Villager.EventOnDead += OnVillagerDead;
+        Villager.EventOnDead -= OnVillagerDead;
     }
 
-
-
-	void Awake () {
-        animator = GetComponent<Animator>(); 
-	}
 	
 
     void OnCelebrate()

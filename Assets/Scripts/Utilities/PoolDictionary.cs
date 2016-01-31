@@ -45,4 +45,15 @@ public class PoolDictionary {
         return false;
     }
 
+    public void Clear()
+    {
+        foreach (KeyValuePair<GameObject, ObjectPooler> entry in dictionary)
+        {
+            entry.Value.DestroyPool();
+
+            // do something with entry.Value or entry.Key
+        }
+        dictionary.Clear();
+    }
+
 }

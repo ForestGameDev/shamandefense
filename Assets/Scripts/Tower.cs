@@ -15,7 +15,7 @@ public class Tower : MonoBehaviour {
 
     [SerializeField] int levelIndex;
 
-    static PoolDictionary pool = new PoolDictionary();
+    static public  PoolDictionary pool = new PoolDictionary();
 
     [SerializeField]
     Image[] inputs;
@@ -204,7 +204,7 @@ public class Tower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (attackPerformed && (Time.time > timeSpellStart + 0.5f))
+        if (attackPerformed && (Time.time > timeSpellStart + 1f))
         {
             //TODO: hide highlight
 

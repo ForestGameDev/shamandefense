@@ -62,8 +62,6 @@ public class Villager : MonoBehaviour {
 
     public void OnDead()
     {
-        EventOnSick -= OnSick;
-        EventOnCelebrate -= OnCelebrate;
         animator.SetTrigger("Dead");
         OnDisable();
         if(EventOnDead != null)
@@ -71,13 +69,5 @@ public class Villager : MonoBehaviour {
             EventOnDead();
         }
         
-        StartCoroutine(WaitAndDisable());
-    }
-
-    IEnumerator WaitAndDisable()
-    {
-
-        yield return new WaitForSeconds(deadTime);
-        gameObject.SetActive(false);
     }
 }
