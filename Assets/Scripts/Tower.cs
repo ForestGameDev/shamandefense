@@ -144,7 +144,7 @@ public class Tower : MonoBehaviour {
         tmpAttck.transform.position = transform.position;
         tmpAttck.SetActive(true);
         //attack.ShowParticles();
-        AddCircle(attack.GetRange()); //To see attack area
+        //AddCircle(attack.GetRange()); //To see attack area
 
         baseHighlight.GetComponent<VisibilityManager>().isVisible = false;
 

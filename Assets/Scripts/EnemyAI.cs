@@ -122,6 +122,11 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    void DeadState()
+    {
+
+    }
+
 
     public void OnDead()
     {
