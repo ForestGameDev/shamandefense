@@ -66,7 +66,7 @@ public class EnemySpawner : MonoBehaviour {
             previousTime = Time.time;
             Spawn();
 
-            if (waitTime < 0.2)
+            if (waitTime < 0.5)
             {
                 reducingWait = false;
             }
@@ -84,7 +84,7 @@ public class EnemySpawner : MonoBehaviour {
         EnemyAI ai = enemyPool.Get(probability.Get()).GetComponent<EnemyAI>();
         int value = Random.Range(0, paths.Count);
         ai.spline = paths[value];
-        ai.exitLocation = transform;
+        ai.exitLocation = exitLocation;
         ai.transform.position = transform.position;
         ai.gameObject.SetActive(true);
 

@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour {
         {
             if (remainingEnemies > 0)
                 remainingEnemies -= 1;
-            else
+            if (remainingEnemies <= 0)
             {
                 completingLevel = true;
                 for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)

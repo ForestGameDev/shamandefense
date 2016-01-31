@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class InputUI : MonoBehaviour {
     public GameObject[] bongos;
-    public Text input1, input2, input3;
+    public Image arrow1, arrow2;
+    public Text textSpell;
     public Image select1, select2, select3, spellsDialog;
     public InputManager inputManager;
 
@@ -35,19 +36,21 @@ public class InputUI : MonoBehaviour {
         switch (currentStep)
         {
             case 1:
-                
-                input1.text = GetLetter(type);
+                arrow1.gameObject.SetActive(true);
+                arrow1.transform.eulerAngles = new Vector3(0, 0, GetAngle(type));
                 select1.gameObject.SetActive(false);
                 select2.gameObject.SetActive(true);
                 break;
             case 2:
-                input2.text = GetLetter(type);
+                arrow2.gameObject.SetActive(true);
+                arrow2.transform.eulerAngles = new Vector3(0, 0, GetAngle(type));
                 select2.gameObject.SetActive(false);
                 select3.gameObject.SetActive(true);
                 spellsDialog.gameObject.SetActive(true);
                 break;
             case 3:
-                input3.text = GetLetter(type);
+                textSpell.gameObject.SetActive(true);
+                textSpell.text = type.ToString();
                 select3.gameObject.SetActive(false);
                 commandCompleted = true;
                 timeCompletedCommand = Time.time;
@@ -64,25 +67,30 @@ public class InputUI : MonoBehaviour {
 
     private void Clear()
     {
-        input1.text = "";
-        input2.text = "";
-        input3.text = "";
+        arrow1.gameObject.SetActive(false);
+        arrow2.gameObject.SetActive(false);
+        textSpell.gameObject.SetActive(false);
     }
 
-    private string GetLetter(int type)
+    private int GetAngle(int type)
     {
-        switch (type)
+        /*switch (type)
         {
             case 1: return "A";
             case 2: return "S";
             case 3: return "D";
             case 4: return "F";
             default: return "?";
-        }
+        }*/
+        return 90 * type;
     }
 
 	// Use this for initialization
 	void Start () {
+        arrow1.gameObject.SetActive(false);
+        arrow2.gameObject.SetActive(false);
+        textSpell.gameObject.SetActive(false);
+
         select2.gameObject.SetActive(false);
         select3.gameObject.SetActive(false);
         spellsDialog.gameObject.SetActive(false);
@@ -93,9 +101,9 @@ public class InputUI : MonoBehaviour {
 	void Update () {
         if (commandCompleted && (Time.time > timeCompletedCommand + 0.5f))
         {
-            input1.text = "";
-            input2.text = "";
-            input3.text = "";
+            arrow1.gameObject.SetActive(false);
+            arrow2.gameObject.SetActive(false);
+            textSpell.gameObject.SetActive(false);
             commandCompleted = false;
             select1.gameObject.SetActive(true);
             spellsDialog.gameObject.SetActive(false);

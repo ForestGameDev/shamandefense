@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour {
                               runeSelected, //activate rune in map and UI
                               spellCompleted; //to be used by the towers to throw an attack
     public static int spell = 0;
-    private InputHandler btn1, btn2, btn3, btn4;
+    private InputHandler btnL, btnD, btnR, btnU, btn1, btn2, btn3, btn4;
     public int amountRitualSteps;
     public bool blocked;
 
@@ -20,6 +20,11 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        btnL = new InputHandler("L");
+        btnD = new InputHandler("D");
+        btnR = new InputHandler("R");
+        btnU = new InputHandler("U");
+
         btn1 = new InputHandler("1");
         btn2 = new InputHandler("2");
         btn3 = new InputHandler("3");
@@ -31,19 +36,33 @@ public class InputManager : MonoBehaviour {
         if (!blocked)
         {
             InputHandler btnPressed = null;
-            if (btn1.isPressedOnce())
-                btnPressed = btn1;
-            else if (btn2.isPressedOnce())
-                btnPressed = btn2;
-            else if (btn3.isPressedOnce())
-                btnPressed = btn3;
-            else if (btn4.isPressedOnce())
-                btnPressed = btn4;
+
+            if (spell < (Mathf.Pow(10, amountRitualSteps - 2)))
+            {
+                if (btnL.isPressedOnce())
+                    btnPressed = btnL;
+                else if (btnD.isPressedOnce())
+                    btnPressed = btnD;
+                else if (btnR.isPressedOnce())
+                    btnPressed = btnR;
+                else if (btnU.isPressedOnce())
+                    btnPressed = btnU;
+            }
+            else
+            {
+                if (btn1.isPressedOnce())
+                    btnPressed = btn1;
+                else if (btn2.isPressedOnce())
+                    btnPressed = btn2;
+                else if (btn3.isPressedOnce())
+                    btnPressed = btn3;
+                else if (btn4.isPressedOnce())
+                    btnPressed = btn4;
+            }
 
             if (btnPressed != null)
             {
-                int pressedCode;
-                int.TryParse(btnPressed.GetKeyName(), out pressedCode);
+                int pressedCode = GetCodeValue(btnPressed.GetKeyName());
                 spell = (spell * 10) + pressedCode;
 
                 Debug.Log("New spell: " + spell);
@@ -55,6 +74,14 @@ public class InputManager : MonoBehaviour {
             }
         }
 	}
+
+    private int GetCodeValue(string direction)
+    {
+        if (direction.Equals("L") || direction.Equals("1")) return 1;
+        else if (direction.Equals("D") || direction.Equals("2")) return 2;
+        else if (direction.Equals("R") || direction.Equals("3")) return 3;
+        else return 4;
+    }
 
     private void CheckRuneSelected()
     {
