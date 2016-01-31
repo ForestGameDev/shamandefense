@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EnemyManager : MonoBehaviour {
 
     static EnemyManager mInstance;
-    public static bool isQuitting = false;
+    static bool isQuitting = false;
 
     public static EnemyManager Instance
     {

@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-
 
 public class EnemyAI : MonoBehaviour {
 
@@ -72,7 +70,6 @@ public class EnemyAI : MonoBehaviour {
         updateState();
     }
 
-    private bool gameOver;
     void WalkingPathState()
     {
         progress += Time.deltaTime / enemyStats.speed * enemyStats.speedMultiplier;
@@ -81,8 +78,7 @@ public class EnemyAI : MonoBehaviour {
             progress = 1f;
             updateState = KidnapingState;
 
-            int i;
-            for(i=0; i <villageManager.villagers.Count;++i)
+            for(int i=0; i <villageManager.villagers.Count;++i)
             {
                 Villager tmpVilla =  villageManager.villagers[i];
                 if(tmpVilla.kidnapped == false)
@@ -92,8 +88,10 @@ public class EnemyAI : MonoBehaviour {
                     break;   
                 }
             }
-            if ((i + 1) == villageManager.villagers.Count)
-                gameOver = true;
+            if(kidnap == null)
+            {
+
+            }
             
             animator.SetTrigger("Kidnap");                
         }
@@ -119,7 +117,6 @@ public class EnemyAI : MonoBehaviour {
         {
                 LevelManager.RemoveEnemy();
             gameObject.SetActive(false);
-            SceneManager.LoadScene("GameOver");
         }
     }
 
