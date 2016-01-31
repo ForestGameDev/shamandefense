@@ -79,6 +79,10 @@ public class Tower : MonoBehaviour {
             gameObject.SetActive(true);
             LevelManager.OnChangeLevel -= OnChangeLevel;
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
    }
 
 

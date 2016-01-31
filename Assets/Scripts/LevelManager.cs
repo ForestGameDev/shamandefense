@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour {
 
     public static EventInt OnChangeLevel;
     [SerializeField]
-    GameObject ChangeScreenGUI;
+    GameObject ChangeScreenGUI, GameOverScreen;
 
     [SerializeField] int level = 1;
     [SerializeField] int enemiesPerRound = 100;
@@ -24,16 +24,47 @@ public class LevelManager : MonoBehaviour {
 
     private static LevelManager instance;
     private int remainingEnemies;
-    private bool completingLevel;
+    private bool completingLevel, startingGameOver;
 
     public static void RemoveEnemy()
     {
         instance.InstanceRemoveEnemy();
     }
 
+    public static void GameOver()
+    {
+        instance.InstanceGameOver();
+    }
+
+    private void InstanceGameOver()
+    {
+        startingGameOver = true;
+        if (GameOverScreen)
+        {
+            GameOverScreen.SetActive(true);
+        }
+        for (int i = 0; i < EnemyManager.Instance.activeEnemies.Count; ++i)
+        {
+            EnemyStats enemy = EnemyManager.Instance.activeEnemies[i];
+            enemy.OnAttacked(9999);
+        }
+
+        level = 1;
+        if (OnChangeLevel != null)
+        {
+            OnChangeLevel(level);
+        }
+
+        enemySpawner.ResetPaths();
+        remainingEnemies = enemiesPerRound;
+        UpdateCounter();
+
+        startingGameOver = false;
+    }
+
     private void InstanceRemoveEnemy()
     {
-        if (!completingLevel)
+        if (!completingLevel && !startingGameOver)
         {
             if (remainingEnemies > 0)
                 remainingEnemies -= 1;
@@ -68,7 +99,7 @@ public class LevelManager : MonoBehaviour {
                 completingLevel = false;
                 remainingEnemies = enemiesPerRound;
             }
-            instance.UpdateCounter();
+            UpdateCounter();
         }
     }
 

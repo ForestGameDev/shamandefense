@@ -90,7 +90,7 @@ public class EnemyAI : MonoBehaviour {
             }
             if(kidnap == null)
             {
-
+                LevelManager.GameOver();
             }
             
             animator.SetTrigger("Kidnap");                

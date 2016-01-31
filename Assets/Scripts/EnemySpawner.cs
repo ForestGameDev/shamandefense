@@ -16,6 +16,11 @@ public class EnemySpawner : MonoBehaviour {
         paths.Add(path);
     }
 
+    public void ResetPaths()
+    {
+        paths.RemoveRange(1, paths.Count - 1);
+    }
+
     [SerializeField] EnemyProbability[] enemyProbability;
     [SerializeField] List<BezierSpline> paths;
     [SerializeField]    float timer = .1f;
