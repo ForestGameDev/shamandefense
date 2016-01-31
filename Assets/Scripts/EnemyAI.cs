@@ -90,6 +90,10 @@ public class EnemyAI : MonoBehaviour {
                     
                 }
             }
+            if(kidnap == null)
+            {
+                //TODO mostrar pantalla de perdiste
+            }
             
 
             animator.SetTrigger("Kidnap");

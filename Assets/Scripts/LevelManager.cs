@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour {
     public delegate void EventInt(int index);
 
     public static EventInt OnChangeLevel;
+    [SerializeField]
+    GameObject ChangeScreenGUI;
 
     [SerializeField] int level = 1;
     [SerializeField] int enemiesPerRound = 100;
@@ -42,6 +44,10 @@ public class LevelManager : MonoBehaviour {
                 {
                     EnemyStats enemy = EnemyManager.Instance.activeEnemies[i];
                     enemy.OnAttacked(9999);
+                }
+                if(ChangeScreenGUI)
+                {
+                    ChangeScreenGUI.SetActive(true);
                 }
 
                 level++;
