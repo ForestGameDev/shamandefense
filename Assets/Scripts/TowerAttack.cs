@@ -10,6 +10,10 @@ public class TowerAttack : MonoBehaviour {
 
     Animator anim;
 
+    AudioSource audioS;
+
+    SpriteRenderer spritRenderer;
+
     public float GetRange()
     {
         return range;
@@ -29,12 +33,23 @@ public class TowerAttack : MonoBehaviour {
     {
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
         {
+            spritRenderer.enabled = false;
+        }
+        if(!audioS.isPlaying)
+        {
             gameObject.SetActive(false);
         }
+    }
+
+    public void OnEnable()
+    {
+        spritRenderer.enabled = true;
     }
 
     public void Awake()
     {
         anim = GetComponent<Animator>();
+        audioS = GetComponent<AudioSource>();
+        spritRenderer = GetComponent<SpriteRenderer>();
     }
 }

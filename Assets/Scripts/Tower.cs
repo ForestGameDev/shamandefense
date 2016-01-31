@@ -144,7 +144,7 @@ public class Tower : MonoBehaviour {
         tmpAttck.transform.position = transform.position;
         tmpAttck.SetActive(true);
         //attack.ShowParticles();
-        //AddCircle(attack.GetRange()); //To see attack area
+        AddCircle(attack.GetRange()); //To see attack area
 
         baseHighlight.GetComponent<VisibilityManager>().isVisible = false;
 
@@ -164,10 +164,15 @@ public class Tower : MonoBehaviour {
 
     private void AddCircle(float range)
     {
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        if(lineRenderer)
+        {
+            DestroyImmediate(lineRenderer);
+        }
         float theta_scale = 0.1f;             //Set lower to add more points
         double size = (2.0 * Mathf.PI) / theta_scale; //Total number of points in circle.
 
-        LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
         lineRenderer.SetWidth(0.01F, 0.01F);
         lineRenderer.SetVertexCount((int)size + 1);
@@ -178,7 +183,7 @@ public class Tower : MonoBehaviour {
             float x = range * Mathf.Cos(theta);
             float y = range * Mathf.Sin(theta);
 
-            Vector3 pos = new Vector3(x, y, -1) + transform.localPosition;
+            Vector3 pos = new Vector3(x, y, -1) + transform.position;
             lineRenderer.SetPosition(i, pos);
             i += 1;
         }
